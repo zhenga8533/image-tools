@@ -7,23 +7,21 @@ import os
 if __name__ == "__main__":
     load_dotenv()
     LOG = os.getenv("LOG") == "True"
+    IMAGE_PATH = os.getenv("IMAGE_PATH")
+    CONVERT_TYPE = os.getenv("CONVERT_TYPE")
 
     # Initialize logger
     logger = Logger("main", "logs/main.log", LOG)
 
-    # Get image path and type to convert to
-    image_path = input("Enter the path of the image: ")
-    convert_type = input("Enter type of file to convert to: ")
-
     # Load image
-    image = cv2.imread(image_path)
+    image = cv2.imread(IMAGE_PATH)
     if image is None:
         logger.log(logging.ERROR, "Invalid image path")
         exit(1)
-    logger.log(logging.INFO, f"Image loaded from {image_path}")
+    logger.log(logging.INFO, f"Image loaded from {IMAGE_PATH}")
 
     # Convert image
-    logger.log(logging.INFO, f"Converting image to {convert_type}")
-    base_name = ".".join(image_path.split("\\")[-1].split(".")[:-1])
-    cv2.imwrite(f"{base_name}.{convert_type}", image)
-    logger.log(logging.INFO, f"Image converted to {convert_type}")
+    logger.log(logging.INFO, f"Converting image to {CONVERT_TYPE}")
+    base_name = ".".join(IMAGE_PATH.split("\\")[-1].split(".")[:-1])
+    cv2.imwrite(f"{base_name}.{CONVERT_TYPE}", image)
+    logger.log(logging.INFO, f"Image converted to {CONVERT_TYPE}")

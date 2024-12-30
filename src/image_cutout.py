@@ -96,13 +96,13 @@ def main():
     # Load environment variables
     load_dotenv()
     LOG = os.getenv("LOG") == "True"
+    IMAGE_PATH = os.getenv("IMAGE_PATH")
 
     # Initialize logger
     logger = Logger("main", "logs/main.log", LOG)
 
     # Read input image
-    image_path = input("Enter the path of the image: ")
-    image = cv2.imread(image_path)
+    image = cv2.imread(IMAGE_PATH)
     if image is None:
         logger.log(logging.ERROR, "Invalid image path")
         exit(1)
@@ -122,11 +122,11 @@ def main():
     cutout = image[y1:y2, x1:x2]
 
     # Save new cutout image
-    file_name = image_path.split("/")[-1].split(".")[0]
-    save_path = image_path.replace(file_name, f"{file_name}_cutout")
+    file_name = IMAGE_PATH.split("/")[-1].split(".")[0]
+    save_path = IMAGE_PATH.replace(file_name, f"{file_name}_cutout")
     copy_num = 1
     while os.path.exists(save_path):
-        save_path = image_path.replace(file_name, f"{file_name}_cutout_{copy_num}")
+        save_path = IMAGE_PATH.replace(file_name, f"{file_name}_cutout_{copy_num}")
         copy_num += 1
     logger.log(logging.INFO, f"Saving cutout image to {save_path}")
     cv2.imwrite(save_path, cutout)
