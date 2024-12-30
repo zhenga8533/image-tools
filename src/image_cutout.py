@@ -99,7 +99,7 @@ def main():
     IMAGE_PATH = os.getenv("IMAGE_PATH")
 
     # Initialize logger
-    logger = Logger("main", "logs/main.log", LOG)
+    logger = Logger("main", "logs/image_cutout.log", LOG)
 
     # Read input image
     image = cv2.imread(IMAGE_PATH)

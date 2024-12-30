@@ -11,7 +11,7 @@ if __name__ == "__main__":
     CONVERT_TYPE = os.getenv("CONVERT_TYPE")
 
     # Initialize logger
-    logger = Logger("main", "logs/main.log", LOG)
+    logger = Logger("main", "logs/image_convert.log", LOG)
 
     # Load image
     image = cv2.imread(IMAGE_PATH)
