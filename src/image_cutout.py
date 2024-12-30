@@ -103,6 +103,9 @@ def main():
     # Read input image
     image_path = input("Enter the path of the image: ")
     image = cv2.imread(image_path)
+    if image is None:
+        logger.log(logging.ERROR, "Invalid image path")
+        exit(1)
 
     # Zoom and pan the image, then select a region to cut out
     cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
