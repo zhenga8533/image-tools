@@ -4,7 +4,8 @@ import cv2
 import logging
 import os
 
-if __name__ == "__main__":
+
+def main():
     load_dotenv()
     LOG = os.getenv("LOG") == "True"
     IMAGE_PATH = os.getenv("IMAGE_PATH")
@@ -25,3 +26,7 @@ if __name__ == "__main__":
     base_name = ".".join(IMAGE_PATH.split("\\")[-1].split(".")[:-1])
     cv2.imwrite(f"{base_name}.{CONVERT_TYPE}", image)
     logger.log(logging.INFO, f"Image converted to {CONVERT_TYPE}")
+
+
+if __name__ == "__main__":
+    main()
